@@ -7,6 +7,7 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.utils import executor
 
 API_TOKEN = '5060862104:AAGJeWhtHK3vp8-VP7iUmlGo2bxpqhc360c'
+password = 'futurist'
 
 logging.basicConfig(level=logging.INFO)
 
@@ -22,9 +23,11 @@ def main_menu_button():
     pantera = InlineKeyboardButton(text='Pantera', callback_data='pantera')
     oksana = InlineKeyboardButton(text='Oksana', callback_data='oksana')
     the_first = InlineKeyboardButton(text='Самый Первый', callback_data='the_first')
+    reboot = InlineKeyboardButton(text='Перезагрузить сервер', callback_data='reboot')
 
     buttons.add(zuy, pantera)
     buttons.add(oksana, the_first)
+    buttons.add(reboot)
 
     return buttons
 
@@ -39,7 +42,7 @@ async def start_command_handler(message: types.Message):
 
 @dp.callback_query_handler(lambda c: c.data == 'zuy')
 async def reboot_zuy(callback_query: types.CallbackQuery):
-    command = 'echo futurist | sudo -S systemctl restart zuy.service'
+    command = f'echo {password} | sudo -S systemctl restart zuy.service'
     os.system(command)
 
     await callback_query.answer('Сделано!')
@@ -47,7 +50,7 @@ async def reboot_zuy(callback_query: types.CallbackQuery):
 
 @dp.callback_query_handler(lambda c: c.data == 'pantera')
 async def reboot_pantera(callback_query: types.CallbackQuery):
-    command = 'echo futurist | sudo -S systemctl restart pantera.service'
+    command = f'echo {password} | sudo -S systemctl restart pantera.service'
     os.system(command)
 
     await callback_query.answer('Сделано!')
@@ -55,7 +58,7 @@ async def reboot_pantera(callback_query: types.CallbackQuery):
 
 @dp.callback_query_handler(lambda c: c.data == 'oksana')
 async def reboot_oksana(callback_query: types.CallbackQuery):
-    command = 'echo futurist | sudo -S systemctl restart oksana.service'
+    command = f'echo {password} | sudo -S systemctl restart oksana.service'
     os.system(command)
 
     await callback_query.answer('Сделано!')
@@ -63,10 +66,18 @@ async def reboot_oksana(callback_query: types.CallbackQuery):
 
 @dp.callback_query_handler(lambda c: c.data == 'the_first')
 async def reboot_the_first(callback_query: types.CallbackQuery):
-    command = 'echo futurist | sudo -S systemctl restart the_first.service'
+    command = f'echo {password} | sudo -S systemctl restart the_first.service'
     os.system(command)
 
     await callback_query.answer('Сделано!')
+
+
+@dp.callback_query_handler(lambda c: c.data == 'reboot')
+async def reboot_server(callback_query: types.CallbackQuery):
+    await callback_query.answer('Через 20 секунд бот начнет работать')
+
+    command = f'echo {password} | sudo reboot'
+    os.system(command)
 
 
 if __name__ == '__main__':

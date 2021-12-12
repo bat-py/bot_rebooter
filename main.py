@@ -76,7 +76,7 @@ async def reboot_the_first(callback_query: types.CallbackQuery):
 async def reboot_server(callback_query: types.CallbackQuery):
     await callback_query.answer('Через 20 секунд бот начнет работать')
 
-    command = f'echo {password} | sudo reboot'
+    command = f'echo {password} | sudo -S reboot'
     os.system(command)
 
 

@@ -30,43 +30,43 @@ def main_menu_button():
 
 
 @dp.message_handler(commands=['start'])
-def start_command_handler(message: types.Message):
+async def start_command_handler(message: types.Message):
     buttons = main_menu_button()
 
     mesg = 'Выберете бот который хотите перезагрузить:'
-    message.answer(mesg, reply_markup=buttons)
+    await message.answer(mesg, reply_markup=buttons)
 
 
 @dp.callback_query_handler(lambda c: c.data == 'zuy')
-def reboot_zuy(callback_query: types.CallbackQuery):
+async def reboot_zuy(callback_query: types.CallbackQuery):
     command = 'echo futurist | sudo -S systemctl restart zuy.service'
     os.system(command)
 
-    callback_query.answer('Сделано!')
+    await callback_query.answer('Сделано!')
 
 
 @dp.callback_query_handler(lambda c: c.data == 'pantera')
-def reboot_pantera(callback_query: types.CallbackQuery):
+async def reboot_pantera(callback_query: types.CallbackQuery):
     command = 'echo futurist | sudo -S systemctl restart pantera.service'
     os.system(command)
 
-    callback_query.answer('Сделано!')
+    await callback_query.answer('Сделано!')
 
 
 @dp.callback_query_handler(lambda c: c.data == 'oksana')
-def reboot_oksana(callback_query: types.CallbackQuery):
+async def reboot_oksana(callback_query: types.CallbackQuery):
     command = 'echo futurist | sudo -S systemctl restart oksana.service'
     os.system(command)
 
-    callback_query.answer('Сделано!')
+    await callback_query.answer('Сделано!')
 
 
 @dp.callback_query_handler(lambda c: c.data == 'the_first')
-def reboot_the_first(callback_query: types.CallbackQuery):
+async def reboot_the_first(callback_query: types.CallbackQuery):
     command = 'echo futurist | sudo -S systemctl restart the_first.service'
     os.system(command)
 
-    callback_query.answer('Сделано!')
+    await callback_query.answer('Сделано!')
 
 
 if __name__ == '__main__':

@@ -19,15 +19,16 @@ dp = Dispatcher(bot, storage=storage)
 def main_menu_button():
     buttons = InlineKeyboardMarkup(row_width=2)
 
-    zuy = InlineKeyboardButton(text='Зуй', callback_data='zuy')
     pantera = InlineKeyboardButton(text='Pantera', callback_data='pantera')
     oksana = InlineKeyboardButton(text='Oksana', callback_data='oksana')
+    zuy = InlineKeyboardButton(text='Зуй', callback_data='zuy')
+    zuy2 = InlineKeyboardButton(text='Зуй 2', callback_data='zuy2')
     the_first = InlineKeyboardButton(text='Самый Первый', callback_data='the_first')
     reboot = InlineKeyboardButton(text='Перезагрузить сервер', callback_data='reboot')
 
-    buttons.add(zuy, pantera)
-    buttons.add(oksana, the_first)
-    buttons.add(reboot)
+    buttons.add(oksana, pantera)
+    buttons.add(zuy, zuy2)
+    buttons.add(the_first, reboot)
 
     return buttons
 
@@ -43,6 +44,14 @@ async def start_command_handler(message: types.Message):
 @dp.callback_query_handler(lambda c: c.data == 'zuy')
 async def reboot_zuy(callback_query: types.CallbackQuery):
     command = f'echo {password} | sudo -S systemctl restart zuy.service'
+    os.system(command)
+
+    await callback_query.answer('Сделано!')
+
+
+@dp.callback_query_handler(lambda c: c.data == 'zuy2')
+async def reboot_zuy(callback_query: types.CallbackQuery):
+    command = f'echo {password} | sudo -S systemctl restart zuy2.service'
     os.system(command)
 
     await callback_query.answer('Сделано!')

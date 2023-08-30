@@ -5,6 +5,7 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.utils import executor
+from database import clear_table_members
 
 API_TOKEN = '5315731872:AAHqvZx2j8KMxgDbL-KtJEp-dzu20JT61pw'
 password = 'assfucker.'
@@ -72,6 +73,8 @@ async def reboot_samiykrasniybot(callback_query: types.CallbackQuery):
     command = f'echo {password} | sudo -S systemctl restart samiykrasniybot.service'
     os.system(command)
 
+    clear_table_members('')
+
     await callback_query.answer('Сделано!')
 
 
@@ -79,6 +82,8 @@ async def reboot_samiykrasniybot(callback_query: types.CallbackQuery):
 async def reboot_samiykrasniybot2(callback_query: types.CallbackQuery):
     command = f'echo {password} | sudo -S systemctl restart samiykrasniybot2.service'
     os.system(command)
+
+    clear_table_members('2')
 
     await callback_query.answer('Сделано!')
 
@@ -88,11 +93,13 @@ async def reboot_samiykrasniybot3(callback_query: types.CallbackQuery):
     command = f'echo {password} | sudo -S systemctl restart samiykrasniybot3.service'
     os.system(command)
 
+    clear_table_members('3')
+
     await callback_query.answer('Сделано!')
 
 
 @dp.callback_query_handler(lambda c: c.data == 'samiykrasniybot4')
-async def reboot_samiykrasniybot3(callback_query: types.CallbackQuery):
+async def reboot_samiykrasniybot4(callback_query: types.CallbackQuery):
     command = f'echo {password} | sudo -S systemctl restart samiykrasniybot_first_information.service'
     os.system(command)
 
@@ -100,7 +107,7 @@ async def reboot_samiykrasniybot3(callback_query: types.CallbackQuery):
 
 
 @dp.callback_query_handler(lambda c: c.data == 'samiykrasniybot_zapas')
-async def reboot_samiykrasniybot3(callback_query: types.CallbackQuery):
+async def reboot_samiykrasniybot_zapas(callback_query: types.CallbackQuery):
     command = f'echo {password} | sudo -S systemctl restart samiykrasniybot_zapas.service'
     os.system(command)
 
@@ -108,17 +115,21 @@ async def reboot_samiykrasniybot3(callback_query: types.CallbackQuery):
 
 
 @dp.callback_query_handler(lambda c: c.data == 'samiykrasniybot5')
-async def reboot_samiykrasniybot3(callback_query: types.CallbackQuery):
+async def reboot_samiykrasniybot5(callback_query: types.CallbackQuery):
     command = f'echo {password} | sudo -S systemctl restart samiykrasniybot5.service'
     os.system(command)
+
+    clear_table_members('5')
 
     await callback_query.answer('Сделано!')
 
 
 @dp.callback_query_handler(lambda c: c.data == 'samiykrasniybot6')
-async def reboot_samiykrasniybot3(callback_query: types.CallbackQuery):
+async def reboot_samiykrasniybot6(callback_query: types.CallbackQuery):
     command = f'echo {password} | sudo -S systemctl restart samiykrasniybot6.service'
     os.system(command)
+
+    clear_table_members('6')
 
     await callback_query.answer('Сделано!')
 
@@ -127,6 +138,8 @@ async def reboot_samiykrasniybot3(callback_query: types.CallbackQuery):
 async def reboot_samiykrasniybot7(callback_query: types.CallbackQuery):
     command = f'echo {password} | sudo -S systemctl restart samiykrasniybot7.service'
     os.system(command)
+
+    clear_table_members('7')
 
     await callback_query.answer('Сделано!')
 
